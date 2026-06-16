@@ -1,0 +1,20 @@
+**VaultX Development Progress Report**
+
+**1. Core Architecture & Observability**
+- **Sentry Integration:** Integrated `@sentry/node` into the global event loop to instantly catch, log, and alert on critical bot crashes or unhandled promise rejections.
+- **Pino Engine:** Migrated all console.log statements to `pino`, a lightning-fast JSON logger optimized for massive Node.js applications.
+- **Database:** Local SQLite database configured using `better-sqlite3` to ensure zero latency and persistent memory storage.
+
+**2. Ultimate Audit Logging System**
+- Deployed a highly exhaustive surveillance engine covering 7 crucial categories: Messages, Voice Activity, Members, Infrastructure, Roles, Invites, and Moderation.
+- **Role-Based Surveillance Filter:** Upgraded the engine with a targeted filter. Administrators can type `v auditlog roles` to open a dynamic Discord dropdown menu and select exactly which roles the system should surveil (e.g. only logging Staff members).
+
+**3. Dynamic Identity & RPC Engine**
+- **Rotating Roleplay RPC:** Built a background loop that automatically rotates the bot's custom rich presence every 30 seconds.
+- **Profile Management Suite:** Engineered a strict, owner-only `.profile` command suite that supports direct Drag-and-Drop image uploads.
+- **Custom Payload Injection:** Since `discord.js` natively lacks the ability for bots to change their Server-Specific Avatar, I bypassed the library entirely. The engine intercepts uploaded images, converts them into Base64 Data URI strings, and forcefully injects them straight into Discord's REST API.
+- **Security Checkpoint:** Built a strict file-type validator into the image uploader to reject malicious payloads and only permit `.png`, `.jpg`, `.gif`, and `.webp` files.
+
+**4. Utility Suite**
+- Dynamic `v help` command complete with multi-page dropdown menus and Support Server Button links.
+- `v say` command locked exclusively for admins to send direct DMs through the bot's identity.
