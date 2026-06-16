@@ -293,8 +293,8 @@ module.exports.vvc = {
         const members = channel.members.map(m => `${m.voice.serverMute ? '🔇' : m.voice.selfMute ? '🔕' : '🔊'} ${m.user.tag}`);
         const { EmbedBuilder } = require('discord.js');
         const embed = new EmbedBuilder()
-            .setColor(0x9b59b6)
-            .setTitle(`🎙️ Voice Channel: ${channel.name}`)
+            .setColor(0x2b2d31)
+            .setAuthor({ name: `🎙️ Voice Channel: ${channel.name}` })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n${members.join('\n') || 'No users in channel.'}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .addFields(
                 { name: '👥 Total Users', value: `${channel.members.size}`, inline: true },
@@ -312,8 +312,8 @@ module.exports.vvc = {
         const members = channel.members.map(m => `${m.voice.serverMute ? '🔇' : m.voice.selfMute ? '🔕' : '🔊'} ${m.user.tag}`);
         const { EmbedBuilder } = require('discord.js');
         const embed = new EmbedBuilder()
-            .setColor(0x9b59b6)
-            .setTitle(`🎙️ Voice Channel: ${channel.name}`)
+            .setColor(0x2b2d31)
+            .setAuthor({ name: `🎙️ Voice Channel: ${channel.name}` })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n${members.join('\n') || 'No users.'}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .addFields(
                 { name: '👥 Total Users', value: `${channel.members.size}`, inline: true },

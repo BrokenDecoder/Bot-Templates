@@ -1,28 +1,25 @@
 const { EmbedBuilder } = require('discord.js');
 
-// Brand Colors
+// Premium Brand Colors (0x2b2d31 matches Discord's dark theme for a "none" look)
 const colors = {
-    success: 0x43b581,
-    error: 0xf04747,
-    warning: 0xfaa61a,
-    info: 0x5865f2,
-    security: 0xc1234f,
-    nuke: 0xff2244,
-    voice: 0x9b59b6,
-    mod: 0xe67e22,
-    log: 0x2f3136
+    success: 0x2b2d31,
+    error: 0x2b2d31,
+    warning: 0x2b2d31,
+    info: 0x2b2d31,
+    security: 0x2b2d31,
+    nuke: 0x2b2d31,
+    voice: 0x2b2d31,
+    mod: 0x2b2d31,
+    log: 0x2b2d31
 };
-
-// Separator line for visual flair
-const sep = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
 
 module.exports = {
     /** ✅ Success */
     successEmbed: (title, description, footer = null) => {
         const e = new EmbedBuilder()
             .setColor(colors.success)
-            .setTitle(`<:check:✅> ${title}`)
-            .setDescription(`${sep}\n${description}\n${sep}`)
+            .setAuthor({ name: `✅ | ${title}` })
+            .setDescription(`> ${description.split('\n').join('\n> ')}`)
             .setTimestamp();
         if (footer) e.setFooter({ text: footer });
         return e;
@@ -32,8 +29,8 @@ module.exports = {
     errorEmbed: (title, description, footer = null) => {
         const e = new EmbedBuilder()
             .setColor(colors.error)
-            .setTitle(`🚫 ${title}`)
-            .setDescription(`${sep}\n${description}\n${sep}`)
+            .setAuthor({ name: `❌ | ${title}` })
+            .setDescription(`> ${description.split('\n').join('\n> ')}`)
             .setTimestamp();
         if (footer) e.setFooter({ text: footer });
         return e;
@@ -43,17 +40,17 @@ module.exports = {
     warningEmbed: (title, description) => {
         return new EmbedBuilder()
             .setColor(colors.warning)
-            .setTitle(`⚠️ ${title}`)
-            .setDescription(`${sep}\n${description}\n${sep}`)
+            .setAuthor({ name: `⚠️ | ${title}` })
+            .setDescription(`> ${description.split('\n').join('\n> ')}`)
             .setTimestamp();
     },
 
-    /** 🛡️ Anti-Nuke Security Alert (used in logs channel) */
+    /** 🛡️ Anti-Nuke Security Alert */
     nukeAlertEmbed: ({ action, target, executor, status, reason, autoAction, recovered }) => {
         return new EmbedBuilder()
             .setColor(colors.nuke)
-            .setTitle(`🚨 ANTI-NUKE TRIGGERED`)
-            .setDescription(`**${sep}**\n> **${action}**\n**${sep}**`)
+            .setAuthor({ name: `🚨 | ANTI-NUKE TRIGGERED` })
+            .setDescription(`**Action Detected:**\n\`\`\`\n${action}\n\`\`\``)
             .addFields(
                 { name: '👤 Threat Actor', value: executor ? `<@${executor.id}>\n\`${executor.tag}\`\n\`ID: ${executor.id}\`` : '`Automated / Unknown`', inline: true },
                 { name: '🎯 Target', value: target || '`Unknown`', inline: true },
@@ -66,7 +63,7 @@ module.exports = {
             .setFooter({ text: '🛡️ VaultX Anti-Nuke System' });
     },
 
-    /** 📋 Moderation Action (warn, ban, kick) */
+    /** 📋 Moderation Action */
     modActionEmbed: ({ action, target, executor, reason, caseid, duration }) => {
         const fields = [
             { name: '👤 User', value: `<@${target.id}>\n\`${target.tag}\`\n\`${target.id}\``, inline: true },
@@ -78,8 +75,7 @@ module.exports = {
 
         return new EmbedBuilder()
             .setColor(colors.mod)
-            .setTitle(`🔨 ${action}`)
-            .setDescription(sep)
+            .setAuthor({ name: `🔨 | ${action}` })
             .addFields(fields)
             .setThumbnail(target.displayAvatarURL?.({ dynamic: true }) || null)
             .setTimestamp()
@@ -90,8 +86,8 @@ module.exports = {
     dmPunishEmbed: ({ action, reason, guildName }) => {
         return new EmbedBuilder()
             .setColor(colors.error)
-            .setTitle(`🔔 You have been ${action}`)
-            .setDescription(`${sep}\nYou were **${action.toLowerCase()}** from **${guildName}**.\n\n**Reason:** ${reason || 'No reason provided'}\n\n*If you believe this was a mistake, please contact a moderator.*\n${sep}`)
+            .setAuthor({ name: `🔔 | You have been ${action}` })
+            .setDescription(`You were **${action.toLowerCase()}** from **${guildName}**.\n\n**Reason:** ${reason || 'No reason provided'}\n\n*If you believe this was a mistake, please contact a moderator.*`)
             .setTimestamp();
     },
 
@@ -99,8 +95,8 @@ module.exports = {
     infoEmbed: (title, description) => {
         return new EmbedBuilder()
             .setColor(colors.info)
-            .setTitle(`ℹ️ ${title}`)
-            .setDescription(`${sep}\n${description}\n${sep}`)
+            .setAuthor({ name: `ℹ️ | ${title}` })
+            .setDescription(`> ${description.split('\n').join('\n> ')}`)
             .setTimestamp();
     }
 };

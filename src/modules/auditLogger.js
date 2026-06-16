@@ -35,8 +35,8 @@ async function sendAuditLog(guild, title, description, hexColor, author = null) 
 
         const embed = new EmbedBuilder()
             .setColor(hexColor)
-            .setTitle(title)
-            .setDescription(`─────────────────────────────────\n${description}`)
+            .setAuthor({ name: title })
+            .setDescription(`>>> ${description}`)
             .setTimestamp()
             .setFooter({ text: 'VaultX Audit System' });
             

@@ -46,8 +46,8 @@ async function handleSay(targetUser, text, reply) {
 
         // Success Confirmation Embed
         const embed = new EmbedBuilder()
-            .setColor(0x57F287) // Green
-            .setTitle('✅ Message Sent')
+            .setColor(0x2b2d31) // Green
+            .setAuthor({ name: '✅ Message Sent' })
             .setDescription(`Successfully sent a direct message to <@${targetUser.id}>.`)
             .addFields({ name: 'Content Sent:', value: `\`\`\`\n${text}\n\`\`\`` })
             .setFooter({ text: 'VaultX Messaging' })
@@ -57,8 +57,8 @@ async function handleSay(targetUser, text, reply) {
     } catch (error) {
         // This usually happens if the user has DMs disabled or blocked the bot
         const embed = new EmbedBuilder()
-            .setColor(0xED4245) // Red
-            .setTitle('❌ Delivery Failed')
+            .setColor(0x2b2d31) // Red
+            .setAuthor({ name: '❌ Delivery Failed' })
             .setDescription(`Could not send a DM to <@${targetUser.id}>.\nThey likely have their **Direct Messages disabled** for this server, or they have blocked the bot.`)
             .setFooter({ text: 'VaultX Messaging' })
             .setTimestamp();

@@ -120,10 +120,11 @@ async function handleCreate(guild, reply) {
     const parsed = JSON.parse(backupRow.data);
 
     const embed = new EmbedBuilder()
-        .setColor(0x00ff00)
-        .setTitle('✅ Backup Complete')
-        .setDescription(`Successfully snapshotted **${parsed.roles.length} roles**, **${parsed.categories.length} categories**, and **${parsed.channels.length} channels**.\n\n**Backup ID:** \`${backupId}\`\n*Keep this ID safe.*`)
-        .setFooter({ text: 'VaultX Time Machine' });
+        .setColor(0x2b2d31)
+        .setAuthor({ name: '✅ Backup Complete' })
+        .setDescription(`>>> The server state has been successfully saved.\n\n**Backup ID:** \`${backupId}\`\n*Keep this ID safe. You will need it to restore the server.*`)
+        .setFooter({ text: 'VaultX Time Machine' })
+        .setTimestamp();
 
     return reply({ embeds: [embed] });
 }
@@ -135,13 +136,14 @@ async function handleList(guild, reply) {
         return reply({ content: 'No backups found for this server. Run `v backup create` to make one.' });
     }
 
-    const description = rows.map((r, i) => `**${i + 1}.** \`${r.id}\` - Created at: <t:${Math.floor(new Date(r.timestamp).getTime() / 1000)}:f>`).join('\n');
+    const listString = rows.map((r, i) => `**${i + 1}.** \`${r.id}\` - Created at: <t:${Math.floor(new Date(r.timestamp).getTime() / 1000)}:f>`).join('\n');
 
     const embed = new EmbedBuilder()
         .setColor(0x2b2d31)
-        .setTitle('📁 Server Backups')
-        .setDescription(description)
-        .setFooter({ text: 'Use v backup load <id> to restore' });
+        .setAuthor({ name: '📦 Available Server Backups' })
+        .setDescription(`>>> ${listString}`)
+        .setFooter({ text: 'VaultX Time Machine' })
+        .setTimestamp();
 
     return reply({ embeds: [embed] });
 }
@@ -158,9 +160,9 @@ async function handleLoad(interactionOrMessage, backupId, client) {
     }
 
     const embed = new EmbedBuilder()
-        .setColor(0xff0000)
-        .setTitle('⚠️ DESTRUCTIVE RESTORE WARNING')
-        .setDescription(`You are about to restore Backup \`${backupId}\` (Created: <t:${Math.floor(new Date(backupRow.timestamp).getTime() / 1000)}:f>).\n\n**CRITICAL:** This action will instantly **DELETE** existing channels or roles depending on what you choose to restore.\n\n⚠️ **API LIMIT WARNING:** Discord limits role creation to 250 roles per day. If you hit this limit, the bot will automatically skip the remaining roles.`)
+        .setColor(0x2b2d31)
+        .setAuthor({ name: '⚠️ Destructive Restore Warning' })
+        .setDescription(`>>> You are about to restore Backup \`${backupId}\` (Created: <t:${Math.floor(new Date(backupRow.timestamp).getTime() / 1000)}:f>).\n\n**CRITICAL:** This action will instantly **DELETE** existing channels or roles depending on what you choose to restore.\n\n⚠️ **API LIMIT WARNING:** Discord limits role creation to 250 roles per day. If you hit this limit, the bot will automatically skip the remaining roles.`)
         .setFooter({ text: 'This action cannot be undone.' });
 
     const selectMenu = new StringSelectMenuBuilder()
@@ -200,7 +202,8 @@ async function handleLoad(interactionOrMessage, backupId, client) {
         replyMessage = await interactionOrMessage.reply({ embeds: [embed], components: [selectRow, btnRow] });
     }
 
-    const collector = replyMessage.createMessageComponentCollector({ filter: i => i.user.id === authorId, time: 60000 });
+    // Increase timeout to 5 minutes so users have enough time to read the warning and make selections
+    const collector = replyMessage.createMessageComponentCollector({ filter: i => i.user.id === authorId, time: 300000 });
 
     let selectedOptions = [];
 

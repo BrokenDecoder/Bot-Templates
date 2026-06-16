@@ -28,8 +28,8 @@ async function handleRoleInfo(role, reply) {
     const activeDangerous = permissions.filter(p => dangerousPerms.includes(p));
 
     const embed = new EmbedBuilder()
-        .setColor(role.color || 0x2b2d31)
-        .setTitle(`🎭 Role: ${role.name}`)
+        .setColor(0x2b2d31)
+        .setAuthor({ name: `🎭 Role: ${role.name}` })
         .setDescription(`─────────────────────────────────\n**Role ID:** \`${role.id}\`\n**Mention:** <@&${role.id}>\n─────────────────────────────────`)
         .addFields(
             { name: '👥 Members with Role', value: `${role.members.size} members`, inline: true },

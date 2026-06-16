@@ -25,9 +25,9 @@ module.exports = {
         db.prepare('UPDATE guild_config SET defconEnabled = ? WHERE guildId = ?').run(isEnabled, message.guild.id);
 
         const embed = new EmbedBuilder()
-            .setTitle('🚨 DEFCON Status Updated')
+            .setAuthor({ name: '🚨 DEFCON Status Updated' })
             .setDescription(`DEFCON Panic Mode is now **${state === 'on' ? 'ENABLED' : 'DISABLED'}**.`)
-            .setColor(state === 'on' ? 0xff0000 : 0x00ff00);
+            .setColor(0x2b2d31);
 
         message.reply({ embeds: [embed] });
     },
@@ -43,9 +43,9 @@ module.exports = {
         db.prepare('UPDATE guild_config SET defconEnabled = ? WHERE guildId = ?').run(isEnabled, interaction.guild.id);
 
         const embed = new EmbedBuilder()
-            .setTitle('🚨 DEFCON Status Updated')
+            .setAuthor({ name: '🚨 DEFCON Status Updated' })
             .setDescription(`DEFCON Panic Mode is now **${state === 'on' ? 'ENABLED' : 'DISABLED'}**.`)
-            .setColor(state === 'on' ? 0xff0000 : 0x00ff00);
+            .setColor(0x2b2d31);
 
         interaction.editReply({ embeds: [embed] });
     }

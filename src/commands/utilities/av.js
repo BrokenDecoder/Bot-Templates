@@ -16,9 +16,9 @@ module.exports = {
         const serverAvatar = member?.displayAvatarURL({ dynamic: true, size: 4096 });
         
         const embed = new EmbedBuilder()
-            .setColor(0x5865f2)
+            .setColor(0x2b2d31)
             .setAuthor({ name: `${target.tag}`, iconURL: globalAvatar })
-            .setTitle('🖼️ User Avatar')
+            .setAuthor({ name: '🖼️ User Avatar' })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n[Global Avatar](${globalAvatar})${serverAvatar && serverAvatar !== globalAvatar ? ` · [Server Avatar](${serverAvatar})` : ''}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .setImage(serverAvatar || globalAvatar)
             .addFields(
@@ -39,9 +39,9 @@ module.exports = {
         const serverAvatar = member?.displayAvatarURL({ dynamic: true, size: 4096 });
         
         const embed = new EmbedBuilder()
-            .setColor(0x5865f2)
+            .setColor(0x2b2d31)
             .setAuthor({ name: `${target.tag}`, iconURL: globalAvatar })
-            .setTitle('🖼️ User Avatar')
+            .setAuthor({ name: '🖼️ User Avatar' })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n[Global Avatar](${globalAvatar})${serverAvatar && serverAvatar !== globalAvatar ? ` · [Server Avatar](${serverAvatar})` : ''}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .setImage(serverAvatar || globalAvatar)
             .addFields(

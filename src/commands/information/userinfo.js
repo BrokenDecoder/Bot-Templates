@@ -35,7 +35,7 @@ async function handleUserInfo(guild, user, reply) {
     const flags = user.flags ? user.flags.toArray().join(', ').replace(/_/g, ' ') : 'None';
 
     const embed = new EmbedBuilder()
-        .setColor(member ? member.displayHexColor : 0x2b2d31)
+        .setColor(0x2b2d31)
         .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL({ dynamic: true }) })
         .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 4096 }))
         .setDescription(`─────────────────────────────────\n**User ID:** \`${user.id}\`\n**Profile:** <@${user.id}>\n─────────────────────────────────`)

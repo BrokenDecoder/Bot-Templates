@@ -68,7 +68,7 @@ async function handleSet(guildId, channelId, reply) {
 
     const embed = new EmbedBuilder()
         .setColor(0x2b2d31)
-        .setTitle('✅ Audit Logging Enabled')
+        .setAuthor({ name: '✅ Audit Logging Enabled' })
         .setDescription(`─────────────────────────────────\nAll 7 exhaustive tracking modules are now active.\nLogs will be sent to <#${channelId}>.`)
         .setFooter({ text: 'VaultX System' });
 
@@ -82,7 +82,7 @@ async function handleDisable(guildId, reply) {
 
     const embed = new EmbedBuilder()
         .setColor(0x2b2d31)
-        .setTitle('❌ Audit Logging Disabled')
+        .setAuthor({ name: '❌ Audit Logging Disabled' })
         .setDescription(`─────────────────────────────────\nAudit logging has been safely turned off.`)
         .setFooter({ text: 'VaultX System' });
 
@@ -95,7 +95,7 @@ async function handleRolesMenu(messageOrInteraction, guildId, reply) {
     
     const embed = new EmbedBuilder()
         .setColor(0x2b2d31)
-        .setTitle('🛡️ Tracked Audit Roles')
+        .setAuthor({ name: '🛡️ Tracked Audit Roles' })
         .setDescription(`Select the specific roles you want the Audit System to track from the dropdown below.\n\n**Currently Tracked:**\n${trackedRoles.length > 0 ? trackedRoles.join(', ') : 'None (Everyone is tracked by default)'}`)
         .setFooter({ text: 'VaultX System' });
 

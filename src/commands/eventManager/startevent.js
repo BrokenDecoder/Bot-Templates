@@ -75,8 +75,8 @@ async function createEvent(guild, creator, name, description, durationMins, repl
         });
 
         const embed = new EmbedBuilder()
-            .setColor(0x43b581)
-            .setTitle('📅 Event Created!')
+            .setColor(0x2b2d31)
+            .setAuthor({ name: '📅 Event Created!' })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n**${event.name}**\n${description}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .addFields(
                 { name: '⏰ Starts', value: `<t:${Math.floor(startTime / 1000)}:R>`, inline: true },

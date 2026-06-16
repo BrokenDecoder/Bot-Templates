@@ -19,18 +19,18 @@ module.exports = {
         if (!bannerURL) {
             const accentColor = user.accentColor ? `#${user.accentColor.toString(16).padStart(6, '0')}` : null;
             const embed = new EmbedBuilder()
-                .setColor(accentColor || 0x5865f2)
+                .setColor(0x2b2d31)
                 .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL({ dynamic: true }) })
-                .setTitle('🖼️ Profile Banner')
+                .setAuthor({ name: '🖼️ Profile Banner' })
                 .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nThis user has no banner.\n${accentColor ? `Accent Color: \`${accentColor}\`` : ''}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
                 .setTimestamp();
             return message.reply({ embeds: [embed] });
         }
 
         const embed = new EmbedBuilder()
-            .setColor(0x5865f2)
+            .setColor(0x2b2d31)
             .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL({ dynamic: true }) })
-            .setTitle('🖼️ Profile Banner')
+            .setAuthor({ name: '🖼️ Profile Banner' })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n[Open Full Resolution](${bannerURL})\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .setImage(bannerURL)
             .setTimestamp()
@@ -49,18 +49,18 @@ module.exports = {
         if (!bannerURL) {
             const accentColor = user.accentColor ? `#${user.accentColor.toString(16).padStart(6, '0')}` : null;
             const embed = new EmbedBuilder()
-                .setColor(accentColor || 0x5865f2)
+                .setColor(0x2b2d31)
                 .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL({ dynamic: true }) })
-                .setTitle('🖼️ Profile Banner')
+                .setAuthor({ name: '🖼️ Profile Banner' })
                 .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nThis user has no banner.\n${accentColor ? `Accent Color: \`${accentColor}\`` : ''}\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
                 .setTimestamp();
             return interaction.editReply({ embeds: [embed] });
         }
 
         const embed = new EmbedBuilder()
-            .setColor(0x5865f2)
+            .setColor(0x2b2d31)
             .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL({ dynamic: true }) })
-            .setTitle('🖼️ Profile Banner')
+            .setAuthor({ name: '🖼️ Profile Banner' })
             .setDescription(`▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n[Open Full Resolution](${bannerURL})\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
             .setImage(bannerURL)
             .setTimestamp()

@@ -27,8 +27,8 @@ async function handleHelp(interactionOrMessage, commandQuery, client, reply) {
 
         if (!command) {
             const errorEmbed = new EmbedBuilder()
-                .setColor(0xff0000)
-                .setTitle('❌ Command Not Found')
+                .setColor(0x2b2d31)
+                .setAuthor({ name: '❌ Command Not Found' })
                 .setDescription(`Could not find a command named \`${commandQuery}\`.\nUse \`${prefix}help\` to see a list of all commands.`);
             return reply({ embeds: [errorEmbed] });
         }
@@ -58,7 +58,7 @@ async function handleHelp(interactionOrMessage, commandQuery, client, reply) {
 
         const embed = new EmbedBuilder()
             .setColor(0x2b2d31)
-            .setTitle(`Command: ${command.name}`)
+            .setAuthor({ name: `Command: ${command.name}` })
             .setDescription(description)
             .addFields(
                 { name: 'Category', value: command.category ? command.category.charAt(0).toUpperCase() + command.category.slice(1) : 'Uncategorized', inline: true },
@@ -97,7 +97,7 @@ async function handleHelp(interactionOrMessage, commandQuery, client, reply) {
     if (commandQuery === 'all') {
         const embed = new EmbedBuilder()
             .setColor(0x2b2d31)
-            .setTitle('VaultX Command Directory')
+            .setAuthor({ name: 'VaultX Command Directory' })
             .setDescription(`Use \`${prefix}help <command>\` to get detailed info about a specific command.`)
             .setThumbnail(client.user.displayAvatarURL())
             .setTimestamp()
@@ -114,7 +114,7 @@ async function handleHelp(interactionOrMessage, commandQuery, client, reply) {
     // Main Help Menu (no arguments)
     const mainEmbed = new EmbedBuilder()
         .setColor(0x2b2d31)
-        .setTitle('📖 VaultX — Help Menu')
+        .setAuthor({ name: '📖 VaultX — Help Menu' })
         .setDescription(`*Prefix:* \`${prefix}\` • 🔵 *Slash Commands: ON*\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n⚙️ **Quick Help**\n• Type \`${prefix}help <command>\` for command details\n• Example: \`${prefix}help kick\` or \`${prefix}help jail\`\n\n📁 **Categories**\nSelect a category below to view commands\n\n• 🛡️ **Anti-Nuke System** — Manage security and server protection\n• 🔨 **Moderation** — Server moderation and member management tools\n• 🎙️ **Voice Management** — Moderate and control voice channels\n• 🛠️ **Utilities & Events** — Get information about users and server events\n• ℹ️ **Information** — Deep insights into server, user, and bot data\n\n💡 **Quick Tips:**\n• Most commands require specific permissions (e.g., Ban Members)\n• Anti-Nuke commands strictly require Server Owner\n• Voice commands require you to be in a Voice Channel`)
         .setFooter({ text: 'VaultX Support' });
 
@@ -159,7 +159,7 @@ async function handleHelp(interactionOrMessage, commandQuery, client, reply) {
 
         const catEmbed = new EmbedBuilder()
             .setColor(0x2b2d31)
-            .setTitle(`📁 ${displayName} Commands`)
+            .setAuthor({ name: `📁 ${displayName} Commands` })
             .setDescription(cmds.length > 0 ? cmds.join(', ') : 'No commands in this category.')
             .setFooter({ text: `Use ${prefix}help <command> for more info` });
 

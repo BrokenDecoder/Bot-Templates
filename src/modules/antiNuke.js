@@ -1,7 +1,7 @@
 const db = require('../database/db');
 const { nukeAlertEmbed } = require('../modules/embeds');
 const { AuditLogEvent, PermissionsBitField } = require('discord.js');
-const { createSilentBackup } = require('../commands/utilities/backup.js');
+
 
 // ─── Global Threat Tracker (DEFCON) ───────────────────────────────
 const globalThreatTracker = new Map();
@@ -124,15 +124,7 @@ async function punishUser(guild, executor, logChannel, action, target, reason, r
     let autoAction = 'Logged';
     
     try {
-        // Trigger Emergency Backup immediately
-        try {
-            const backupId = await createSilentBackup(guild);
-            if (backupId && logChannel) {
-                await logChannel.send(`📸 **Emergency Backup Taken:** \`${backupId}\` (Saved right before punishment)`).catch(() => {});
-            }
-        } catch (backupError) {
-            console.error('[ANTINUKE] Emergency backup failed:', backupError);
-        }
+
 
         // Trigger DEFCON check
         const threatLevel = trackGlobalThreat(guild.id, executor.id);
